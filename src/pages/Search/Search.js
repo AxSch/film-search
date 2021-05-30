@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { fetchMovies, fetchTVshows, fetchPeople } from '../../api/api'
 import ResultsList from '../../components/ResultsList/ResultsList';
-import { useHistory } from "react-router-dom";
+import { storeResults } from '../../reducers/searchResults/searchResultSlice';
 
 const Search = () => {
     const [searchData, setSearchData] = useState({})
     const [isDropdown, setIsDropdown] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const history = useHistory()
+    const dispatch = useDispatch()
     
     const fetchSearchResults = async (value) => {
         const peopleResults = await fetchPeople(value)
         const tvShowResults = await fetchTVshows(value)
         const movieResults = await fetchMovies(value)
         setSearchData({people: peopleResults.results, tvShows: tvShowResults.results, movies: movieResults.results})
+        dispatch(storeResults(searchData))
+
     }
 
     const handleSearch = (value) => {
@@ -48,7 +53,7 @@ const Search = () => {
             )
         }
     }
-    
+
     return (
         <div>
             <div>
