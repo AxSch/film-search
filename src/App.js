@@ -1,12 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import Search from './pages/Search/Search';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <Search />
-    </div>
+    <BrowserRouter>
+        <Route exact path="/">
+          <Redirect to="search" />
+        </Route>
+        <Route path="/search" component={Search} />
+      </BrowserRouter>
   );
 }
 
