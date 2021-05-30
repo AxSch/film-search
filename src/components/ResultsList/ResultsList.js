@@ -7,21 +7,21 @@ const ResultsList = ({ results }) => {
             <>
                 <span>Tv Shows</span>
                 {results['tvShows'].map((tvShow, index) => {
-                    return <Result resultData={tvShow} key={index} />
+                    return <Result category="tvShows" resultData={tvShow} key={index} />
                 })}
 
                 <div />
 
                 <span>Movies</span>
                 {results['movies'].map((movie, index) => {
-                    return <Result resultData={movie} key={index} />
+                    return <Result category="movies" resultData={movie} key={index} />
                 })}
 
                 <div />
 
                 <span>Actor/Actress</span>
                 {results['people'].map((person, index) => {
-                    return <Result resultData={person} key={index} />
+                    return <Result category="people" resultData={person} key={index} />
                 })}
             </>
         )
