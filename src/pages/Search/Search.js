@@ -48,7 +48,7 @@ const Search = () => {
             )
         }
     }
-
+    
     return (
         <div>
             <div>
@@ -58,7 +58,7 @@ const Search = () => {
                 <label htmlFor="search">Search</label>
                 <input type="search" id="search" onChange={e => handleSearch(e.target.value)} />
                 <input type="submit" value="Submit" />
-                {isDropdown ? 
+                {isDropdown && Object.keys(searchData).length > 0 ? 
                     <ResultsList results={searchData} /> : null
                 }
             </form>
