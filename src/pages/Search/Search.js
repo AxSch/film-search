@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { fetchMovies, fetchTVshows, fetchPeople } from '../../api/api'
 import ResultsList from '../../components/ResultsList/ResultsList';
@@ -11,16 +11,15 @@ const Search = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const history = useHistory()
     const dispatch = useDispatch()
-    
+    let location = useLocation()
+
     const fetchSearchResults = async (value) => {
         const peopleResults = await fetchPeople(value)
         const tvShowResults = await fetchTVshows(value)
         const movieResults = await fetchMovies(value)
-        setSearchData({people: peopleResults.results, tvShows: tvShowResults.results, movies: movieResults.results})
-        dispatch(storeResults(searchData))
-
+        setSearchData({ people: peopleResults.results, tvShows: tvShowResults.results, movies: movieResults.results })
     }
-
+    
     const handleSearch = (value) => {
         if (value.length >= 5) {
             fetchSearchResults(value)
@@ -29,14 +28,23 @@ const Search = () => {
         }
         setSearchQuery(value)
     }
-
+    
     const onSubmit = (e) => {
         e.preventDefault();
         setIsDropdown(false)
-        const qs = new URLSearchParams({item: searchQuery}).toString()
+        const qs = new URLSearchParams({ item: searchQuery }).toString()
         if (Object.keys(searchData).length < 1) {
             fetchSearchResults(searchQuery)
+            history.push({
+                pathname: "/search",
+                search: "?" + qs
+            })
         }
+        if (searchQuery === '') {
+            setSearchData({})
+            dispatch(storeResults(searchData))
+        }
+        dispatch(storeResults(searchData))
         history.push({
             pathname: "/search",
             search: "?" + qs
@@ -44,11 +52,17 @@ const Search = () => {
     }
 
     const renderResultsList = () => {
-        if (!isDropdown && Object.keys(searchData).length > 0) {
+        if (!isDropdown && Object.values(searchData)[0] !== undefined && location.search !== "") {
             return (
                 <div>
                     <h3>Results</h3>
-                    <ResultsList results={searchData} />
+                    <ResultsList results={searchData} handleDropdown={setIsDropdown} />
+                </div>
+            )
+        } else if (searchQuery === '') {
+            return (
+                <div>
+                    <p>Please enter something to search</p>
                 </div>
             )
         }
@@ -63,8 +77,8 @@ const Search = () => {
                 <label htmlFor="search">Search</label>
                 <input type="search" id="search" onChange={e => handleSearch(e.target.value)} />
                 <input type="submit" value="Submit" />
-                {isDropdown && Object.keys(searchData).length > 0 ? 
-                    <ResultsList results={searchData} /> : null
+                {isDropdown && Object.keys(searchData).length > 0 && searchQuery !== '' ?
+                    <ResultsList results={searchData} handleDropdown={setIsDropdown} /> : null
                 }
             </form>
             {renderResultsList()}
