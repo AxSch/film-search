@@ -60,4 +60,55 @@ const fetchPersonCredits = async (query) => {
     }
 }
 
-export { fetchMovies,  fetchPeople, fetchTVshows, fetchTVCredits, fetchMovieCredits, fetchPersonCredits }
+const fetchPersonImage = async (query) => {
+    try {
+        const personImage = await fetch(`https://api.themoviedb.org/3/person/${query}/images?api_key=76e77a494aebd05ce5c4f5000c61cc0e`)
+        const data = await personImage.json()
+        return data
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const fetchTVShowImage = async (query) => {
+    try {
+        const tvShowImage = await fetch(`https://api.themoviedb.org/3/tv/${query}/images?api_key=76e77a494aebd05ce5c4f5000c61cc0e`)
+        const data = await tvShowImage.json()
+        return data
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const fetchMovieImage = async (query) => {
+    try {
+        const movieImage = await fetch(`https://api.themoviedb.org/3/movie/${query}/images?api_key=76e77a494aebd05ce5c4f5000c61cc0e`)
+        const data = await movieImage.json()
+        return data
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const configureAPI = async (query) => {
+    try {
+        const config = await fetch(`https://api.themoviedb.org/3/configuration?api_key=76e77a494aebd05ce5c4f5000c61cc0e`)
+        const data = await config.json()
+        return data
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+export { 
+        fetchMovies,
+        fetchPeople,
+        fetchTVshows, 
+        fetchTVCredits, 
+        fetchMovieCredits, 
+        fetchPersonCredits, 
+        fetchPersonImage, 
+        fetchTVShowImage, 
+        fetchMovieImage, 
+        configureAPI
+     }
