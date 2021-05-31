@@ -1,14 +1,17 @@
 import './App.css';
 import Search from './pages/Search/Search';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Details from './pages/Details/Details';
 
 function App() {
   return (
     <BrowserRouter>
-        <Route exact path="/">
-          <Redirect to="search" />
-        </Route>
-        <Route path="/search" component={Search} />
+        <Search />
+        <Route
+          exact
+          path="/item/:id"
+          component={Details}
+        />
       </BrowserRouter>
   );
 }
