@@ -1,25 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ResultItem, ResultName } from './Result.styled'
 
 const Result = ({ resultData, category }) => {
-
     const handleCategory = () => {
         if (category === 'movies') {
             return (
-                <li>
+                <ResultItem>
                     <Link to={`/item/${resultData.id}&category=${category}`}>
                         <span>{resultData.title}</span>
                     </Link>
-                </li>
+                </ResultItem>
             )
         } else {
             return (
-                <li>
+                <ResultItem>
                     <Link to={`/item/${resultData.id}&category=${category}`}>
-                        <span>{resultData.name}</span>
-                        <span>{resultData.known_for_department}</span>
+                        <ResultName>{resultData.name}</ResultName>
+                        {resultData.known_for_department && resultData.known_for_department !== '' ? <span>- {resultData.known_for_department}</span> : null}
                     </Link>
-                </li>
+                </ResultItem>
             )
         }
     }
