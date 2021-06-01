@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 
 const Dropdown = styled.ul`
-    margin: 1.2rem 0;
+    color: white;
+    margin: ${props => (props.isDropdown ? `0` : '1.2rem 0')};
     list-style-type: none;
     padding-left: 0;
-    border-radius: 4px;
-    padding: ${props => (props.isDropdown ? `1.2rem` : 0)};
+    border-radius: ${props => (props.isDropdown ? `0 0 4px 4px` : '4px')};
+    padding: ${props => (props.isDropdown ? `1.2rem` : '0.9rem')};
+    background-color: rgb(60,60,60);
     box-shadow: ${props => (props.isDropdown ? `0px 0px 0px 1px rgba(0, 0, 0, 0.2)` : '')};
 `
 

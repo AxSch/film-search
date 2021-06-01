@@ -65,7 +65,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
                         {results['people'].map((people, index) => {
                             return (
                                 <div onClick={() => handleOnClick(people)} key={index}>
-                                    <Result category="people" resultData={people} />
+                                    <Result category="people" resultData={people} isDropdown={isDropdown} />
                                 </div>
                             )
                         })}
@@ -78,7 +78,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const renderResults = () => {
         return (
             <>
-                {isDropdown ? <Suggestions>Suggestions</Suggestions> : null}
+                {isDropdown ? <Suggestions>Suggestions</Suggestions> : <h3>Results</h3>}
                 {renderTVshows(results, filter)}
                 {renderMovies(results, filter)}
                 {renderPeople(results, filter)}
