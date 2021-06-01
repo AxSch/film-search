@@ -1,14 +1,20 @@
 import styled from 'styled-components'
 
 const DetailHeaderSection = styled.div`
+    background-color: rgb(60,60,60);
+    color: white;
     display: flex;
     margin: 3.6rem 0;
+    padding: 1.3rem;
     align-items: start;
-
-    h1, span, p {
-        margin-left: 2.3rem;
-        margin-top: 0;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    
+    @media(min-width: 1024px) {
+        flex-wrap: nowrap;
+        align-items: center;
     }
+
 `
 
 const DetailBackNav = styled.div`
@@ -49,6 +55,33 @@ const DetailsImage = styled.img`
     border-radius: 2%;
 `
 
+const DetailsOverviewSection = styled.div`
+    margin-top: 1.2rem;
+    padding: 1.3rem;
+
+    h1 {
+        text-align: center;
+    }
+
+    @media(min-width: 1024px) {
+        display: flex;
+        align-self: start;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+`
+
+const DetailsImageSection = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @media(min-width: 1024px) {
+        width: 40%;
+        align-items: center;
+    }
+`
+
 
 export {
     DetailHeaderSection,
@@ -56,5 +89,7 @@ export {
     DetailInfoSection,
     DetailCastCrew,
     DetailsKnownFor,
-    DetailsImage
+    DetailsImage,
+    DetailsImageSection,
+    DetailsOverviewSection
 }

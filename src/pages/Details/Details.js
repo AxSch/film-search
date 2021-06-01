@@ -10,6 +10,8 @@ import {
     DetailsKnownFor,
     DetailCastCrew,
     DetailsImage,
+    DetailsImageSection,
+    DetailsOverviewSection
 } from './Details.styled';
 
 
@@ -56,7 +58,6 @@ const Details = () => {
 
     const renderImg = () => {
         let imgPath, imgSrc
-        // console.log(currentItem + isActor)
         if (Object.keys(imageDetails).length > 0 && Object.keys(currentItem).length > 0) {
             if (isActor) {
                 imgPath = currentItem.profile_path !== null ? currentItem.profile_path.split('/')[1] : ''
@@ -161,12 +162,14 @@ const Details = () => {
                 <a href="#goBack" onClick={() => history.goBack()}>Back</a>
             </DetailBackNav>
             <DetailHeaderSection>
-                {Object.keys(imageDetails).length > 0 ? renderImg() : null}
-                <div>
-                    {isActor ? <h1>{currentItem.name}</h1> : <h1>{currentItem.title}</h1>}
+                <DetailsImageSection>
+                    {Object.keys(imageDetails).length > 0 ? renderImg() : null}
+                </DetailsImageSection>
+                <DetailsOverviewSection>
+                    {isActor || qsCategory === 'tvShows' ? <h1>{currentItem.name}</h1> : <h1>{currentItem.title}</h1>}
                     {isActor ? <span>{currentItem.known_for_department}</span> : ''}
                     {currentItem.overview !== "" ? <p>{currentItem.overview}</p> : null}
-                </div>
+                </DetailsOverviewSection>
             </DetailHeaderSection>
             <div>
                 {renderMoreInfoSection()}
