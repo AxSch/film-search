@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { fetchMovies, fetchTVshows, fetchPeople } from '../../api/api'
@@ -10,7 +10,6 @@ const Search = () => {
     const [isDropdown, setIsDropdown] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [filter, setFilter] = useState('all')
-    const [isSelected, setIsSelected] = useState(true)
     const history = useHistory()
     const dispatch = useDispatch()
     let location = useLocation()
@@ -33,11 +32,6 @@ const Search = () => {
 
     const handleCheckbox = (value) => {
         setFilter(value)
-        if (filter !== 'all') {
-            setIsSelected(false)
-        } else {
-            setIsSelected(true)
-        }
     }
 
     const onSubmit = (e) => {
@@ -100,7 +94,7 @@ const Search = () => {
                     <label htmlFor="tvShows">TV Shows</label><br></br>
                     <input type="radio" id="people" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="people"></input>
                     <label htmlFor="people">People</label><br></br>
-                    <input type="radio" checked={isSelected} id="all" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="all"></input>
+                    <input type="radio" id="all" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="all"></input>
                     <label htmlFor="all">All</label><br></br>
                 </div>
             </form>
