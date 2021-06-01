@@ -4,10 +4,10 @@ const ResultItem = styled.li`
     margin-bottom: 0.5rem;
 
     a {
-        color: rgb(10,111,211);
+        color: white;
         text-decoration: none;
         &:hover {
-            color: rgba(10,111,211, 0.4);
+            color: rgba(255,255,255, 0.4);
         }
     }
 `
