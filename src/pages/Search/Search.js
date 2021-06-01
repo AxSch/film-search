@@ -13,7 +13,8 @@ import {
         SearchBarButton,
         SearchFilterLabel,
         SearchFilterHeading,
-        ResultsListSection
+        ResultsListSection,
+        SearchForm
 } from './Search.styled';
 
 
@@ -73,17 +74,12 @@ const Search = () => {
             if (filter !== '') {
                 return (
                     <ResultsListSection>
-                        <h3>Results</h3>
                         <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} isDropdown={isDropdown} />
                     </ResultsListSection>
                 )
             }
         } else if (searchQuery === '') {
-            return (
-                <ResultsListSection>
-                    <p>Please enter something to search</p>
-                </ResultsListSection>
-            )
+            return null
         }
     }
 
@@ -92,7 +88,7 @@ const Search = () => {
             <SearchHeader>
                 <h1>Search for an Actor, TV show & Movie</h1>
             </SearchHeader>
-            <form onSubmit={(e) => onSubmit(e)}>
+            <SearchForm onSubmit={(e) => onSubmit(e)} isDropdown={isDropdown}>
                 <SearchBarSection>
                     <SearchBarInput placeholder="Search" type="search" id="search" onChange={e => handleSearch(e.target.value)} />
                     <SearchBarButton type="submit">Submit</SearchBarButton>
@@ -110,10 +106,10 @@ const Search = () => {
                     <input type="radio" id="all" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="all"></input>
                     <SearchFilterLabel htmlFor="all">All</SearchFilterLabel><br></br>
                 </SearchFilterSection>
-                {isDropdown && Object.keys(searchData).length > 0 && searchQuery !== '' ?
-                    <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} isDropdown={isDropdown} /> : null
-                }
-            </form>
+            </SearchForm>
+            {isDropdown && Object.keys(searchData).length > 0 && searchQuery !== '' ?
+                <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} isDropdown={isDropdown} /> : null
+            }
             {renderResultsList()}
         </Container>
     )

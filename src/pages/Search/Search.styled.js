@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     margin: 0 2.4rem;
-
 `
 
 const SearchHeader = styled.div`
@@ -10,14 +9,14 @@ const SearchHeader = styled.div`
     justify-content: center;
 `
 
-const SearchLabel = styled.label`
-    margin-right: 1rem;
-`
-
 const SearchBarInput = styled.input`
-    padding: 0.4rem;
+    padding: 0.6rem;
     width: 80%;
     margin-right: 1rem;
+
+    @media(min-width: 1024px) {
+        width: 60%;
+    }
 `
 
 const SearchBarSection = styled.div`
@@ -27,8 +26,12 @@ const SearchBarSection = styled.div`
 `
 
 const SearchBarButton = styled.button`
-    padding: 0.4rem;
+    padding: 0.6rem;
     width: 20%;
+
+    @media(min-width: 1024px) {
+        width: 10%;
+    }
 `
 
 const SearchFilterSection = styled.div`
@@ -53,10 +56,17 @@ const ResultsListSection = styled.div`
     margin-top: 3.2rem;
 `
 
+const SearchForm = styled.form`
+    background-color: rgb(60,60,60);
+    color: white;
+    padding: 1.2rem;
+    border-radius: ${props => (props.isDropdown ? `4px 4px 0 0` : '4px')};
+`
+
 export {
     SearchHeader,
     Container,
-    SearchLabel,
+    SearchForm,
     SearchBarSection,
     SearchBarInput,
     SearchFilterSection,
