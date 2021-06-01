@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { fetchMovies, fetchTVshows, fetchPeople } from '../../api/api'
@@ -26,6 +26,11 @@ const Search = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     let location = useLocation()
+    const focusRef = useRef()
+
+    useEffect(() => {
+        focusRef.current.focus()
+    }, [])
 
     const fetchSearchResults = async (value) => {
         const peopleResults = await fetchPeople(value)
@@ -90,7 +95,7 @@ const Search = () => {
             </SearchHeader>
             <SearchForm onSubmit={(e) => onSubmit(e)} isDropdown={isDropdown}>
                 <SearchBarSection>
-                    <SearchBarInput placeholder="Search" type="search" id="search" onChange={e => handleSearch(e.target.value)} />
+                    <SearchBarInput ref={focusRef} placeholder="Search" type="search" id="search" onChange={e => handleSearch(e.target.value)} />
                     <SearchBarButton type="submit">Submit</SearchBarButton>
                 </SearchBarSection>
                 <SearchFilterHeading>
