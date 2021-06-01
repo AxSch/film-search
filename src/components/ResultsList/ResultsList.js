@@ -2,8 +2,9 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setCurrentItem } from '../../reducers/searchResults/searchResultSlice'
 import Result from '../Result/Result'
+import { Dropdown, Suggestions, ResultsSection, ResultsHeading } from './ResultsList.styled'
 
-const ResultsList = ({ results, handleDropdown, filter }) => {
+const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const dispatch = useDispatch()
 
     const handleOnClick = (result) => {
@@ -14,16 +15,20 @@ const ResultsList = ({ results, handleDropdown, filter }) => {
     const renderTVshows = (results, filter) => {
         if (filter === 'all' || filter === 'tvShows') {
             return (
-                <div>
-                    <span>Tv Shows</span>
-                    {results['tvShows'].map((tvShow, index) => {
-                        return (
-                            <div onClick={() => handleOnClick(tvShow)} key={index}>
-                                <Result category="tvShows" resultData={tvShow} />
-                            </div>
-                        )
-                    })}
-                </div>
+                <ResultsSection>
+                    <ResultsHeading>
+                        <span>TV Shows</span>
+                    </ResultsHeading>
+                    <div>
+                        {results['tvShows'].map((tvShow, index) => {
+                            return (
+                                <div onClick={() => handleOnClick(tvShow)} key={index}>
+                                    <Result category="tvShows" resultData={tvShow} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </ResultsSection>
             )
         }
     }
@@ -31,16 +36,20 @@ const ResultsList = ({ results, handleDropdown, filter }) => {
     const renderMovies = (results, filter) => {
         if (filter === 'all' || filter === 'movies') {
             return (
-                <div>
-                    <span>Movies</span>
-                    {results['movies'].map((movie, index) => {
-                        return (
-                            <div onClick={() => handleOnClick(movie)} key={index}>
-                                <Result category="movies" resultData={movie} />
-                            </div>
-                        )
-                    })}
-                </div>
+                <ResultsSection>
+                    <ResultsHeading>
+                        <span>Movies</span>
+                    </ResultsHeading>
+                    <div>
+                        {results['movies'].map((movie, index) => {
+                            return (
+                                <div onClick={() => handleOnClick(movie)} key={index}>
+                                    <Result category="movies" resultData={movie} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </ResultsSection>
             )
         }
     }
@@ -48,16 +57,20 @@ const ResultsList = ({ results, handleDropdown, filter }) => {
     const renderPeople = (results, filter) => {
         if (filter === 'all' || filter === 'people') {
             return (
-                <div>
-                    <span>People</span>
-                    {results['people'].map((people, index) => {
-                        return (
-                            <div onClick={() => handleOnClick(people)} key={index}>
-                                <Result category="people" resultData={people} />
-                            </div>
-                        )
-                    })}
-                </div>
+                <ResultsSection isPeople={true}>
+                    <ResultsHeading>
+                        <span>People</span>
+                    </ResultsHeading>
+                    <div>
+                        {results['people'].map((people, index) => {
+                            return (
+                                <div onClick={() => handleOnClick(people)} key={index}>
+                                    <Result category="people" resultData={people} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </ResultsSection>
             )
         }
     }
@@ -65,6 +78,7 @@ const ResultsList = ({ results, handleDropdown, filter }) => {
     const renderResults = () => {
         return (
             <>
+                {isDropdown ? <Suggestions>Suggestions</Suggestions> : null}
                 {renderTVshows(results, filter)}
                 {renderMovies(results, filter)}
                 {renderPeople(results, filter)}
@@ -72,9 +86,9 @@ const ResultsList = ({ results, handleDropdown, filter }) => {
         )
     }
     return (
-        <ul>
+        <Dropdown isDropdown={isDropdown}>
             {renderResults()}
-        </ul>
+        </Dropdown>
     )
 }
 
