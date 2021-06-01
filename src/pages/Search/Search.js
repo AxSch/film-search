@@ -4,6 +4,18 @@ import { useDispatch } from 'react-redux';
 import { fetchMovies, fetchTVshows, fetchPeople } from '../../api/api'
 import ResultsList from '../../components/ResultsList/ResultsList';
 import { storeResults } from '../../reducers/searchResults/searchResultSlice';
+import { 
+        SearchHeader, 
+        Container, 
+        SearchBarSection, 
+        SearchBarInput, 
+        SearchFilterSection, 
+        SearchBarButton,
+        SearchFilterLabel,
+        SearchFilterHeading,
+        ResultsListSection
+} from './Search.styled';
+
 
 const Search = () => {
     const [searchData, setSearchData] = useState({})
@@ -60,46 +72,50 @@ const Search = () => {
         if (!isDropdown && Object.values(searchData)[0] !== undefined && location.search !== "") {
             if (filter !== '') {
                 return (
-                    <div>
+                    <ResultsListSection>
                         <h3>Results</h3>
-                        <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} />
-                    </div>
+                        <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} isDropdown={isDropdown} />
+                    </ResultsListSection>
                 )
             }
         } else if (searchQuery === '') {
             return (
-                <div>
+                <ResultsListSection>
                     <p>Please enter something to search</p>
-                </div>
+                </ResultsListSection>
             )
         }
     }
 
     return (
-        <div>
-            <div>
+        <Container>
+            <SearchHeader>
                 <h1>Search for an Actor, TV show & Movie</h1>
-            </div>
+            </SearchHeader>
             <form onSubmit={(e) => onSubmit(e)}>
-                <label htmlFor="search">Search</label>
-                <input type="search" id="search" onChange={e => handleSearch(e.target.value)} />
-                <input type="submit" value="Submit" />
-                {isDropdown && Object.keys(searchData).length > 0 && searchQuery !== '' ?
-                    <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter}/> : null
-                }
-                <div>
+                <SearchBarSection>
+                    <SearchBarInput placeholder="Search" type="search" id="search" onChange={e => handleSearch(e.target.value)} />
+                    <SearchBarButton type="submit">Submit</SearchBarButton>
+                </SearchBarSection>
+                <SearchFilterHeading>
+                    <span>Filter by</span>
+                </SearchFilterHeading>
+                <SearchFilterSection>
                     <input type="radio" id="movies" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="movies"></input>
-                    <label htmlFor="movies">Movies</label><br></br>
+                    <SearchFilterLabel htmlFor="movies">Movies</SearchFilterLabel><br></br>
                     <input type="radio" id="tvShows" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="tvShows"></input>
-                    <label htmlFor="tvShows">TV Shows</label><br></br>
+                    <SearchFilterLabel htmlFor="tvShows">TV Shows</SearchFilterLabel><br></br>
                     <input type="radio" id="people" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="people"></input>
-                    <label htmlFor="people">People</label><br></br>
+                    <SearchFilterLabel htmlFor="people">People</SearchFilterLabel><br></br>
                     <input type="radio" id="all" onChange={(event) => handleCheckbox(event.target.value)} name="cinematography" value="all"></input>
-                    <label htmlFor="all">All</label><br></br>
-                </div>
+                    <SearchFilterLabel htmlFor="all">All</SearchFilterLabel><br></br>
+                </SearchFilterSection>
+                {isDropdown && Object.keys(searchData).length > 0 && searchQuery !== '' ?
+                    <ResultsList results={searchData} handleDropdown={setIsDropdown} filter={filter} isDropdown={isDropdown} /> : null
+                }
             </form>
             {renderResultsList()}
-        </div>
+        </Container>
     )
 }
 
