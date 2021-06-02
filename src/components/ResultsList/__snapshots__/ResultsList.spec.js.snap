@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsList should render successfully 1`] = `
+<div>
+  <ul
+    class="sc-dlnjwi iajivG"
+    data-testid="resultsList"
+  >
+    <h3
+      data-testid="results"
+    >
+      Results
+    </h3>
+    <div
+      class="sc-eCApnc hxHobU"
+      data-testid="tvshowsSection"
+    >
+      <div
+        class="sc-jSFjdj cqLFpO"
+      >
+        <span>
+          TV Shows
+        </span>
+      </div>
+      <div>
+        <div>
+          <li
+            class="sc-bdnxRM crZWod"
+            data-testid="resultItem"
+          >
+            <a
+              href="/item/87732&category=tvShows"
+            >
+              <span
+                class="sc-gtsrHT kiexgk"
+                data-testid="resultName"
+              >
+                Will Smith's Bucket List
+              </span>
+            </a>
+          </li>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-eCApnc hxHobU"
+      data-testid="moviesSection"
+    >
+      <div
+        class="sc-jSFjdj cqLFpO"
+      >
+        <span>
+          Movies
+        </span>
+      </div>
+      <div>
+        <div>
+          <li
+            class="sc-bdnxRM crZWod"
+            data-testid="resultItemMovies"
+          >
+            <a
+              href="/item/413131&category=movies"
+            >
+              <span>
+                Will Smith: Live in Concert
+              </span>
+            </a>
+          </li>
+        </div>
+        <div>
+          <li
+            class="sc-bdnxRM crZWod"
+            data-testid="resultItemMovies"
+          >
+            <a
+              href="/item/413131&category=movies"
+            >
+              <span>
+                Will Smith - Goes to New York
+              </span>
+            </a>
+          </li>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-eCApnc ffJBIP"
+      data-testid="peopleSection"
+    >
+      <div
+        class="sc-jSFjdj cqLFpO"
+      >
+        <span>
+          People
+        </span>
+      </div>
+      <div>
+        <div>
+          <li
+            class="sc-bdnxRM crZWod"
+            data-testid="resultItem"
+          >
+            <a
+              href="/item/2888&category=people"
+            >
+              <span
+                class="sc-gtsrHT kiexgk"
+                data-testid="resultName"
+              >
+                Will Smith
+              </span>
+              <span>
+                - 
+                Acting
+              </span>
+            </a>
+          </li>
+        </div>
+      </div>
+    </div>
+  </ul>
+</div>
+`;

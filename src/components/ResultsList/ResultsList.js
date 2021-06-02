@@ -15,7 +15,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const renderTVshows = (results, filter) => {
         if (filter === 'all' || filter === 'tvShows') {
             return (
-                <ResultsSection>
+                <ResultsSection data-testid="tvshowsSection">
                     <ResultsHeading>
                         <span>TV Shows</span>
                     </ResultsHeading>
@@ -36,7 +36,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const renderMovies = (results, filter) => {
         if (filter === 'all' || filter === 'movies') {
             return (
-                <ResultsSection>
+                <ResultsSection data-testid="moviesSection">
                     <ResultsHeading>
                         <span>Movies</span>
                     </ResultsHeading>
@@ -57,7 +57,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const renderPeople = (results, filter) => {
         if (filter === 'all' || filter === 'people') {
             return (
-                <ResultsSection isPeople={true}>
+                <ResultsSection isPeople={true} data-testid="peopleSection">
                     <ResultsHeading>
                         <span>People</span>
                     </ResultsHeading>
@@ -78,7 +78,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
     const renderResults = () => {
         return (
             <>
-                {isDropdown ? <Suggestions>Suggestions</Suggestions> : <h3>Results</h3>}
+                {isDropdown ? <Suggestions data-testid="suggestions">Suggestions</Suggestions> : <h3 data-testid="results">Results</h3>}
                 {renderTVshows(results, filter)}
                 {renderMovies(results, filter)}
                 {renderPeople(results, filter)}
@@ -86,7 +86,7 @@ const ResultsList = ({ results, handleDropdown, filter, isDropdown }) => {
         )
     }
     return (
-        <Dropdown isDropdown={isDropdown}>
+        <Dropdown isDropdown={isDropdown} data-testid="resultsList">
             {renderResults()}
         </Dropdown>
     )
