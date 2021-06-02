@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Result should render successfully 1`] = `
+<div>
+  <li
+    class="sc-bdnxRM crZWod"
+    data-testid="resultItem"
+  >
+    <a
+      href="/item/2400560&category=tvShows"
+    >
+      <span
+        class="sc-gtsrHT kiexgk"
+        data-testid="resultName"
+      >
+        Willie Smith
+      </span>
+      <span>
+        - 
+        Acting
+      </span>
+    </a>
+  </li>
+</div>
+`;

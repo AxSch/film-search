@@ -6,7 +6,7 @@ const Result = ({ resultData, category }) => {
     const handleCategory = () => {
         if (category === 'movies') {
             return (
-                <ResultItem>
+                <ResultItem data-testid="resultItemMovies">
                     <Link to={`/item/${resultData.id}&category=${category}`}>
                         <span>{resultData.title}</span>
                     </Link>
@@ -14,9 +14,9 @@ const Result = ({ resultData, category }) => {
             )
         } else {
             return (
-                <ResultItem>
+                <ResultItem data-testid="resultItem">
                     <Link to={`/item/${resultData.id}&category=${category}`}>
-                        <ResultName>{resultData.name}</ResultName>
+                        <ResultName data-testid="resultName">{resultData.name}</ResultName>
                         {resultData.known_for_department && resultData.known_for_department !== '' ? <span>- {resultData.known_for_department}</span> : null}
                     </Link>
                 </ResultItem>
