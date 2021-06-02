@@ -68,6 +68,11 @@ const DetailsOverviewSection = styled.div`
         align-self: start;
         flex-wrap: wrap;
         margin-top: 0;
+        align-items: center;
+
+        h1 {
+            margin-right: 1.2rem;
+        }
     }
 `
 
